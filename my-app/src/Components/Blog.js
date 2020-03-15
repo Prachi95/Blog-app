@@ -76,10 +76,23 @@ around the globe and reflect SAP's culture of diversity and innovation. SAP Labs
 entities, developing and constantly improving key SAP solutions.`
 const otherInfo = `SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
 solutions. These research and development locations are strategically located in high-tech clusters 
-around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D 
-entities, developing and constantly improving key SAP solutions. These research and development 
-locations are strategically located in high-tech clusters around the globe and reflect SAP's culture 
-of diversity and innovation.`
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
+solutions. These research and development locations are strategically located in high-tech clusters 
+around the globe and reflect SAP's culture of diversity and innovation.`
 const upvotes = '50+'
 const views = '60'
 
