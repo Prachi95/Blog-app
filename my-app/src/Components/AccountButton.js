@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IconButton, Menu, MenuItem } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Typography from '@material-ui/core/Typography';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 

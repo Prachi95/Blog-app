@@ -4,6 +4,7 @@ import Blog from './Blog';
 import Navbar from './Navbar';
 import Grid from '@material-ui/core/Grid'
 
+
 const jsonResponse = [
     {
         "id": "7f1df38e-c120-499d-8806-f90ebc63b234",
@@ -12,7 +13,7 @@ const jsonResponse = [
         "views": 69407,
         "upVotes": 4002,
         "createdAt": "2020-03-13T21:54:52.544+0000",
-        "lastModifiedAt": "2020-03-13T21:56:25.923+0000",
+        "lastModifiedAt": "2020-03-15T21:56:25.923+0000",
         "user": {
             "id": "92ae5f19-60e7-496b-bc9f-d71de83d1ce6",
             "firstName": "Pratik",
@@ -64,7 +65,7 @@ class BlogList extends Component {
     state  = {
         blogs : jsonResponse
     }
-    
+
     render() {
         return (
             <div class="wrapper">
