@@ -11,7 +11,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography';
-import Collapse from '@material-ui/core/Collapse';
 import moment from "moment";
 
 
@@ -65,7 +64,7 @@ function BootstrapTooltip(props) {
   return <Tooltip arrow classes={classes} {...props} />;
 }
 
-
+//methods to calculate time difference
 function getLastUpdatedTime(postUpdatedTime) {   
   var now = new Date();
   var then = Date.parse(postUpdatedTime)
@@ -75,22 +74,20 @@ function getLastUpdatedTime(postUpdatedTime) {
   const diff = timeEnd.diff(startDate);
   const diffDuration = moment.duration(diff);
 
-  // console.log("Days:", diffDuration.asDays());
-  // console.log("Hours:", diffDuration.asHours());
-  // console.log("Minutes:", diffDuration.asMinutes());
-  // console.log("Seconds:", diffDuration.asSeconds());
-  //var s = Math.floor(diffDuration.asHours()) + moment.utc(diff).format(":mm:ss");
-  return getTimeDuration(diffDuration.asDays(), diffDuration.asHours(), diffDuration.asMinutes(), diffDuration.asSeconds())
+  //var date = moment(postUpdatedTime).utc().format('MMM d, YYYY')
+  var date = moment(postUpdatedTime).utc().format('YYYY-MM-DD')
+  return getTimeDuration(date, diffDuration.asDays(), diffDuration.asHours(), diffDuration.asMinutes(), diffDuration.asSeconds())
 }
 
-function getTimeDuration(days, hours, mins, seconds) {
+function getTimeDuration(date, days, hours, mins, seconds) {
+  var dt = date
   var d = parseInt(days, 10)
   var h = parseInt(hours, 10)
   var m = parseInt(mins, 10)
   var s = parseInt(seconds, 10)
   var time = ""
 
-  if (d > 1) {
+  if (d >= 1 && d < 7) {
     time = "Updated "+ d.toString() +" days ago"
   } else if (h >= 1 && h < 24) {
     time = "Updated "+ h.toString() +" hours ago"
@@ -98,35 +95,25 @@ function getTimeDuration(days, hours, mins, seconds) {
     time = "Updated "+ m.toString() +" minutes ago"
   } else if (s >= 1 && s < 60) {
     time = "Updated "+ s.toString() +" seconds ago"
+  } else {
+    time = "Updated on " + dt
   }
    return time
 }
 
 function getLimitedText(contentText) {
+  //showing first 300 chanracters
   var text = contentText.replace(/^(.{300}[^\s]*).*/, "$1");
-  return text
+  return text + "..."
 }
-
-/*
-const username = 'Pratik Gawali'
-const title = 'Title of Blog'
-const lastModified = 'Last updated: 9 th March,2020'
-const message = `SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
-solutions. These research and development locations are strategically located in high-tech clusters 
-around the globe and reflect SAP's culture of diversity and innovation. SAP Labs are SAP's core R&D 
-entities, developing and constantly improving key SAP solutions.`
-const otherInfo = `SAP Labs are SAP's core R&D entities, developing and constantly improving key SAP 
-solutions. These research and development locations are strategically located in high-tech clusters 
-around the globe and reflect SAP's culture of diversity and innovation.`
-const upvotes = '50+'
-const views = '60'
-*/
 
 const Blog = (props) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
+    const handleExpandClick = (event) => {
+      //prevents scrolling to top when re-rendered the screen
+      event.preventDefault();
       setExpanded(!expanded);
     };
     
@@ -143,18 +130,13 @@ const Blog = (props) => {
                 title={ <Typography className={classes.username}>{props.blog['user']['firstName'] + " " + props.blog['user']['lastName']}</Typography> }
                 subheader={ <Typography className={classes.extras}>{getLastUpdatedTime(props.blog['lastModifiedAt'])}</Typography> }
             />
-            <CardContent className={classes.cardSpacing} >
-              <Typography className={classes.username}> {getLimitedText(props.blog['content'])} 
-                <Link href="#" className={classes.link} onClick={handleExpandClick}>(more)</Link>
-              </Typography>     
+
+            <CardContent className={classes.cardSpacing} > 
+              <Typography className={classes.username}>  {expanded ? props.blog['content'] : getLimitedText(props.blog['content']) }
+                <Link href="#" className={classes.link} onClick={handleExpandClick} preserveScrollPosition={true}>{expanded ? '(less)' : '(more)'}</Link>
+              </Typography> 
             </CardContent>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography className={classes.username} paragraph>
-                  {props.blog['content']}
-                </Typography>
-              </CardContent>
-            </Collapse>
+
             <CardActions disableSpacing className={classes.cardSpacing} >
               <BootstrapTooltip title="Upvotes" placement="top">
               <Button size="small" className={classes.button} startIcon={<ArrowUpwardIcon />}>{props.blog['upVotes']}</Button> 
