@@ -7,11 +7,13 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tooltip from '@material-ui/core/Tooltip';
 import Link from '@material-ui/core/Link';
+import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography';
 import moment from "moment";
+
 
 
 
@@ -118,9 +120,9 @@ const Blog = (props) => {
     };
     
     return (
-      <div class="wrapper">
+      <div className="wrapper">
         { props.blog ? (
-            <card className={classes.root} border={1}>
+            <Card className={classes.root} border={1}>
             <CardHeader
               title={ <Typography className={classes.title}><b>{props.blog['title']}</b></Typography> }
             />
@@ -133,7 +135,7 @@ const Blog = (props) => {
 
             <CardContent className={classes.cardSpacing} > 
               <Typography className={classes.username}>  {expanded ? props.blog['content'] : getLimitedText(props.blog['content']) }
-                <Link href="#" className={classes.link} onClick={handleExpandClick} preserveScrollPosition={true}>{expanded ? '(less)' : '(more)'}</Link>
+                <Link href="#" className={classes.link} onClick={handleExpandClick}>{expanded ? '(less)' : '(more)'}</Link>
               </Typography> 
             </CardContent>
 
@@ -145,7 +147,7 @@ const Blog = (props) => {
                   <Button size="small" className={classes.button} startIcon={<VisibilityIcon />}>{props.blog['views']}</Button> 
             </BootstrapTooltip>
           </CardActions>
-          </card>
+          </Card>
           ) : null }
           
       </div>

@@ -113,7 +113,7 @@ class BlogList extends Component {
             )
         }
         return (
-            <div class="wrapper">
+            <div className="wrapper">
                 <Navbar/>
                 {this.state.blogs ? ( 
                     <div style={{flexGrow: 1, backgroundColor: '#F1F1F1'}}>
