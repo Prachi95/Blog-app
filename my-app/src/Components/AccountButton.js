@@ -3,8 +3,10 @@ import { IconButton, Menu, MenuItem } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import { isLoggedIn } from '../Utils/UserAuthentication';
+import { useHistory } from "react-router-dom";
+import AppPaths from "../AppPaths";
+import AppConstants from "../AppConstants";
 
 const useStyles = makeStyles(theme => ({
     menuText: {
@@ -15,6 +17,7 @@ const useStyles = makeStyles(theme => ({
 const AccountButton = () => {
     const classes = useStyles()
     const [anchorEl, setAnchorE1] = useState(null)
+    const history = useHistory();
 
     const handleMenu = event => {
         setAnchorE1(event.currentTarget)
@@ -23,6 +26,15 @@ const AccountButton = () => {
     const handleClose = () => {
         setAnchorE1(null)
     };
+
+    const handleSignOutMenuItem = () => {
+        localStorage.removeItem(AppConstants.JWT_KEY);
+        history.push(AppPaths.SIGN_IN);
+    }
+
+    const handleSignInMenuItem = () => {
+        history.push(AppPaths.SIGN_IN);
+    }
 
     return (
         <div>
@@ -51,8 +63,11 @@ const AccountButton = () => {
                 <MenuItem onClick={handleClose}>
                     <Typography className={classes.menuText}>Profile</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Typography className={classes.menuText}>Logout</Typography>
+                <MenuItem onClick={handleClose}>{
+                    isLoggedIn() ? <Typography className={classes.menuText} onClick={handleSignOutMenuItem}>Sign Out</Typography> :
+                                   <Typography className={classes.menuText} onClick={handleSignInMenuItem}>Sign In</Typography>
+                }
+                    
                 </MenuItem>
             </Menu>
         </div>

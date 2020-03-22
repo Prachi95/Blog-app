@@ -13,8 +13,9 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography';
 import moment from "moment";
-
-
+import { isLoggedIn } from '../Utils/UserAuthentication';
+import { useHistory } from "react-router-dom";
+import AppPaths from "../AppPaths";
 
 
 const useStyles = makeStyles(theme => ({
@@ -112,6 +113,7 @@ function getLimitedText(contentText) {
 const Blog = (props) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const history = useHistory();
 
     const handleExpandClick = (event) => {
       //prevents scrolling to top when re-rendered the screen
@@ -119,6 +121,15 @@ const Blog = (props) => {
       setExpanded(!expanded);
     };
     
+    const handleUpvoteClick = (event) => {
+      event.preventDefault();
+      if (isLoggedIn()) {
+
+      } else {
+        history.push(AppPaths.SIGN_IN);
+      }
+    }
+
     return (
       <div className="wrapper">
         { props.blog ? (
@@ -129,7 +140,7 @@ const Blog = (props) => {
             <CardHeader
                 className={classes.cardSpacing} 
                 avatar = { <Avatar src={require('./Images/img.jpg')}/> }
-                title={ <Typography className={classes.username}>{props.blog['user']['firstName'] + " " + props.blog['user']['lastName']}</Typography> }
+                title={ <Typography className={classes.username}>{props.blog['author']['firstName'] + " " + props.blog['author']['lastName']}</Typography> }
                 subheader={ <Typography className={classes.extras}>{getLastUpdatedTime(props.blog['lastModifiedAt'])}</Typography> }
             />
 
@@ -141,7 +152,7 @@ const Blog = (props) => {
 
             <CardActions disableSpacing className={classes.cardSpacing} >
               <BootstrapTooltip title="Upvotes" placement="top">
-              <Button size="small" className={classes.button} startIcon={<ArrowUpwardIcon />}>{props.blog['upVotes']}</Button> 
+              <Button size="small" className={classes.button} onClick={handleUpvoteClick} startIcon={<ArrowUpwardIcon />}>{props.blog['upVotes']}</Button> 
             </BootstrapTooltip>
               <BootstrapTooltip title="Views" placement="top">
                   <Button size="small" className={classes.button} startIcon={<VisibilityIcon />}>{props.blog['views']}</Button> 
