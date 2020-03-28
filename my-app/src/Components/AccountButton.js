@@ -36,6 +36,10 @@ const AccountButton = () => {
         history.push(AppPaths.SIGN_IN);
     }
 
+    const handleProfileMenuItem = () => {
+        history.push(AppPaths.PROFILE);
+    }
+
     return (
         <div>
             <IconButton
@@ -61,7 +65,7 @@ const AccountButton = () => {
                 onClose={handleClose}>
 
                 <MenuItem onClick={handleClose}>
-                    <Typography className={classes.menuText}>Profile</Typography>
+                    <Typography className={classes.menuText} onClick={handleProfileMenuItem}>Profile</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>{
                     isLoggedIn() ? <Typography className={classes.menuText} onClick={handleSignOutMenuItem}>Sign Out</Typography> :

@@ -3,9 +3,9 @@ import './Blog.css';
 import Blog from './Blog';
 import Navbar from './Navbar';
 import Grid from '@material-ui/core/Grid'
-//import { ActivityIndicator, View } from 'react-native'
+import Loader from './ActivityIndicator'
 
-var token = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmF0aWsuci5nYXdhbGlAZ21haWwuY29tIiwiZXhwIjoxNTg0OTM3NjkwLCJpYXQiOjE1ODQ5MDE2OTB9.qxlQigUaMQ2cbItJ98BI7aU89mbbariR2Di6sc2loCQ'
+var token = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmF0aWsuci5nYXdhbGlAZ21haWwuY29tIiwiZXhwIjoxNTg1NDEyODI3LCJpYXQiOjE1ODUzNzY4Mjd9.KXGlUxv1ALnh67PE82eRm3P1zjH1YiCiNIgOjqgLXoE'
 
 class BlogList extends Component {
 
@@ -41,9 +41,7 @@ class BlogList extends Component {
     render() {
         if(this.state.isLoading) {
             return(
-              <div>
-                  <h1>"Wait for content to fetch"</h1>
-              </div>
+              <Loader/>
             )
         }
         return (
@@ -72,4 +70,5 @@ export default BlogList;
 <View style={{flex: 1, padding: 20}}>
     <ActivityIndicator/>
 </View>
+
 */

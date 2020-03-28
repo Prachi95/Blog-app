@@ -11,7 +11,8 @@ import HomeIcon from '@material-ui/icons/Home'
 import PeopleIcon from '@material-ui/icons/People';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import Button from '@material-ui/core/Button';
-
+import AppPaths from "../AppPaths";
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -80,6 +81,15 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleAddContent = () => {
+    history.push(AppPaths.ADD_CONTENT);
+  }
+
+  const handleHome = () => {
+    history.push(AppPaths.HOME);
+  }
 
     return (
         <div className={classes.grow}>
@@ -90,7 +100,10 @@ const NavBar = () => {
               </Typography>
 
               <div className={classes.buttonsContainer}>
-                  <IconButton color="inherit"> <HomeIcon />  
+                  <IconButton 
+                    color="inherit"
+                    onClick={handleHome}> 
+                  <HomeIcon />  
                   <Typography className={classes.menuText}>Home</Typography>
                   </IconButton>
                   &nbsp;&nbsp;
@@ -119,7 +132,8 @@ const NavBar = () => {
                   variant="contained"
                   className={classes.button}
                   size="small"
-                  startIcon={<PostAddIcon />}>
+                  startIcon={<PostAddIcon />}
+                  onClick={handleAddContent}>
                   <Typography className={classes.menuText}>Add Content</Typography>
                 </Button>
               </div>

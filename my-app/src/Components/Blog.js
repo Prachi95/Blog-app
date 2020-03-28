@@ -12,6 +12,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography';
+import PersonIcon from '@material-ui/icons/Person';
 import moment from "moment";
 import { isLoggedIn } from '../Utils/UserAuthentication';
 import { useHistory } from "react-router-dom";
@@ -49,6 +50,9 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     color: '#1F61A8',
+  },
+  avatar: {
+    backgroundColor: '#A9A9A9'
   },
 }));
 
@@ -139,7 +143,8 @@ const Blog = (props) => {
             />
             <CardHeader
                 className={classes.cardSpacing} 
-                avatar = { <Avatar src={require('./Images/img.jpg')}/> }
+                //avatar = { <Avatar src={require('./Images/img.jpg')}/> }
+                avatar = { <Avatar className={classes.avatar}> <PersonIcon/> </Avatar> }
                 title={ <Typography className={classes.username}>{props.blog['author']['firstName'] + " " + props.blog['author']['lastName']}</Typography> }
                 subheader={ <Typography className={classes.extras}>{getLastUpdatedTime(props.blog['lastModifiedAt'])}</Typography> }
             />
